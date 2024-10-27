@@ -12,6 +12,7 @@ abstract class Routes {
   static const PROFILE_SCREEN = _Paths.PROFILE_SCREEN;
   static const HOME_SCREEN = _Paths.HOME_SCREEN;
   static const PAYMENT_SCREEN = _Paths.PAYMENT_SCREEN;
+  static const EDITP_SCREEN = _Paths.EDITP_SCREEN;
 }
 
 abstract class _Paths {
@@ -25,4 +26,5 @@ abstract class _Paths {
   static const PROFILE_SCREEN = '/profile-screen';
   static const HOME_SCREEN = '/home-screen';
   static const PAYMENT_SCREEN = '/payment-screen';
+  static const EDITP_SCREEN = '/editp-screen';
 }

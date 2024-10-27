@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 
+import '../modules/editp_screen/bindings/editp_screen_binding.dart';
+import '../modules/editp_screen/views/editp_screen_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/home_screen/bindings/home_screen_binding.dart';
@@ -78,6 +80,11 @@ class AppPages {
       page: () => const PaymentScreenView(),
       binding: PaymentScreenBinding(),
       transition: Transition.fadeIn,
+    ),
+    GetPage(
+      name: _Paths.EDITP_SCREEN,
+      page: () => const EditpScreenView(),
+      binding: EditpScreenBinding(),
     ),
   ];
 }
