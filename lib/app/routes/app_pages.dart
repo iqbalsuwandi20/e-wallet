@@ -6,6 +6,8 @@ import '../modules/home_screen/bindings/home_screen_binding.dart';
 import '../modules/home_screen/views/home_screen_view.dart';
 import '../modules/login_screen/bindings/login_screen_binding.dart';
 import '../modules/login_screen/views/login_screen_view.dart';
+import '../modules/payment_screen/bindings/payment_screen_binding.dart';
+import '../modules/payment_screen/views/payment_screen_view.dart';
 import '../modules/profile_screen/bindings/profile_screen_binding.dart';
 import '../modules/profile_screen/views/profile_screen_view.dart';
 import '../modules/register_screen/bindings/register_screen_binding.dart';
@@ -69,6 +71,12 @@ class AppPages {
       name: _Paths.HOME_SCREEN,
       page: () => const HomeScreenView(),
       binding: HomeScreenBinding(),
+      transition: Transition.fadeIn,
+    ),
+    GetPage(
+      name: _Paths.PAYMENT_SCREEN,
+      page: () => const PaymentScreenView(),
+      binding: PaymentScreenBinding(),
       transition: Transition.fadeIn,
     ),
   ];

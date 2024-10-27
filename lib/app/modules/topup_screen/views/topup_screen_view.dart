@@ -33,51 +33,52 @@ class TopupScreenView extends GetView<TopupScreenController> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               StreamBuilder<String>(
-                  stream: controller.getBalance(),
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return Center(
-                        child: CircularProgressIndicator(
-                          backgroundColor: Colors.orange[900],
-                        ),
-                      );
-                    }
-                    if (snapshot.hasData) {
-                      return Container(
-                        padding: EdgeInsets.all(20),
-                        decoration: BoxDecoration(
-                          color: Colors.red[700],
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Saldo anda",
-                              style: TextStyle(color: Colors.white),
-                            ),
-                            SizedBox(height: 10),
-                            Row(
-                              children: [
-                                Text(
-                                  "Rp. ${controller.balance.value.toStringAsFixed(0)}",
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 30,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                stream: controller.getBalance(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Center(
+                      child: CircularProgressIndicator(
+                        backgroundColor: Colors.orange[900],
+                      ),
+                    );
+                  }
+                  if (snapshot.hasData) {
+                    return Container(
+                      padding: EdgeInsets.all(20),
+                      decoration: BoxDecoration(
+                        color: Colors.red[700],
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Saldo anda",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          SizedBox(height: 10),
+                          Row(
+                            children: [
+                              Text(
+                                "Rp. ${controller.balance.value.toStringAsFixed(0)}",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 30,
+                                  fontWeight: FontWeight.bold,
                                 ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      );
-                    } else {
-                      return Center(
-                        child: Text(""),
-                      );
-                    }
-                  }),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    );
+                  } else {
+                    return Center(
+                      child: Text(""),
+                    );
+                  }
+                },
+              ),
               SizedBox(height: 50),
               Text(
                 "Silahkan masukan",

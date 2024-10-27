@@ -124,6 +124,7 @@ class HomeScreenController extends GetxController {
             'serviceCode': service['service_code'],
             'serviceName': service['service_name'],
             'serviceIcon': service['service_icon'],
+            'serviceTariff': service['service_tariff'],
           };
         }).toList();
 

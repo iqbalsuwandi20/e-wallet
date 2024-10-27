@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../routes/app_pages.dart';
 import '../controllers/home_screen_controller.dart';
 
 class HomeScreenView extends GetView<HomeScreenController> {
@@ -188,27 +189,35 @@ class HomeScreenView extends GetView<HomeScreenController> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.center,
                                       children: [
-                                        Container(
-                                          width: 50,
-                                          height: 50,
-                                          padding: EdgeInsets.all(10),
-                                          decoration: BoxDecoration(
-                                            color: Colors.grey[300],
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                          ),
-                                          child: ClipOval(
-                                            child: Image.network(
-                                              service['serviceIcon'],
-                                              fit: BoxFit.cover,
-                                              errorBuilder:
-                                                  (context, error, stackTrace) {
-                                                return Container(
-                                                  color: Colors.red,
-                                                  child: Icon(Icons.error,
-                                                      color: Colors.white),
-                                                );
-                                              },
+                                        InkWell(
+                                          onTap: () {
+                                            Get.toNamed(
+                                              Routes.PAYMENT_SCREEN,
+                                              arguments: service,
+                                            );
+                                          },
+                                          child: Container(
+                                            width: 50,
+                                            height: 50,
+                                            padding: EdgeInsets.all(10),
+                                            decoration: BoxDecoration(
+                                              color: Colors.grey[300],
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                            ),
+                                            child: ClipOval(
+                                              child: Image.network(
+                                                service['serviceIcon'],
+                                                fit: BoxFit.cover,
+                                                errorBuilder: (context, error,
+                                                    stackTrace) {
+                                                  return Container(
+                                                    color: Colors.red,
+                                                    child: Icon(Icons.error,
+                                                        color: Colors.white),
+                                                  );
+                                                },
+                                              ),
                                             ),
                                           ),
                                         ),
