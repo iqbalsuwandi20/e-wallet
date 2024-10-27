@@ -72,71 +72,91 @@ class HomeScreenView extends GetView<HomeScreenController> {
                           ),
                         ),
                         SizedBox(height: 30),
-                        Container(
-                          padding: EdgeInsets.all(20),
-                          decoration: BoxDecoration(
-                            color: Colors.red[700],
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Saldo anda",
-                                style: TextStyle(color: Colors.white),
-                              ),
-                              SizedBox(height: 10),
-                              Row(
-                                children: [
-                                  Text(
-                                    "Rp",
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 30,
-                                      fontWeight: FontWeight.bold,
+                        StreamBuilder<String>(
+                          stream: controller.getBalance(),
+                          builder: (context, snapshotGetBlance) {
+                            if (snapshotGetBlance.connectionState ==
+                                ConnectionState.waiting) {
+                              return Center(
+                                child: CircularProgressIndicator(
+                                  backgroundColor: Colors.orange[900],
+                                ),
+                              );
+                            }
+                            if (snapshot.hasData) {
+                              return Container(
+                                padding: EdgeInsets.all(20),
+                                decoration: BoxDecoration(
+                                  color: Colors.red[700],
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "Saldo anda",
+                                      style: TextStyle(color: Colors.white),
                                     ),
-                                  ),
-                                  SizedBox(width: 5),
-                                  Obx(() => Text(
-                                        controller.isBalanceVisible.value
-                                            ? controller.balance.value
-                                                .toStringAsFixed(0)
-                                            : "****",
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 30,
-                                          fontWeight: FontWeight.bold,
+                                    SizedBox(height: 10),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          "Rp.",
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 30,
+                                            fontWeight: FontWeight.bold,
+                                          ),
                                         ),
-                                      )),
-                                ],
-                              ),
-                              SizedBox(height: 10),
-                              Row(
-                                children: [
-                                  Text(
-                                    "Lihat Saldo",
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
+                                        SizedBox(width: 5),
+                                        Obx(() => Text(
+                                              controller.isBalanceVisible.value
+                                                  ? controller.balance.value
+                                                      .toStringAsFixed(0)
+                                                  : "****",
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 30,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            )),
+                                      ],
                                     ),
-                                  ),
-                                  SizedBox(width: 5),
-                                  IconButton(
-                                    onPressed: () {
-                                      controller.toggleBalanceVisibility();
-                                    },
-                                    icon: Icon(
-                                      controller.isBalanceVisible.value
-                                          ? Icons.visibility_off_outlined
-                                          : Icons.visibility_outlined,
-                                      color: Colors.white,
-                                      size: 20,
+                                    SizedBox(height: 10),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          "Lihat Saldo",
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        SizedBox(width: 5),
+                                        IconButton(
+                                          onPressed: () {
+                                            controller
+                                                .toggleBalanceVisibility();
+                                          },
+                                          icon: Icon(
+                                            controller.isBalanceVisible.value
+                                                ? Icons.visibility_off_outlined
+                                                : Icons.visibility_outlined,
+                                            color: Colors.white,
+                                            size: 20,
+                                          ),
+                                        ),
+                                      ],
                                     ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
+                                  ],
+                                ),
+                              );
+                            } else {
+                              return Center(
+                                child: Text(""),
+                              );
+                            }
+                          },
                         ),
                         SizedBox(height: 30),
                         StreamBuilder<List<Map<String, dynamic>>>(
