@@ -85,7 +85,12 @@ class RegisterScreenController extends GetxController {
       if (response.statusCode == 200) {
         final responseBody = jsonDecode(response.body);
         Get.toNamed(Routes.LOGIN_SCREEN);
-        Get.snackbar("Sukses", responseBody['message']);
+        Get.snackbar(
+          "Sukses",
+          responseBody['message'],
+          backgroundColor: Colors.orange[900],
+          colorText: Colors.white,
+        );
       } else {
         final responseBody = jsonDecode(response.body);
         errorMessage.value = responseBody['message'] ?? "Terjadi kesalahan";
