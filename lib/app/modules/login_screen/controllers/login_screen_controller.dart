@@ -6,6 +6,9 @@ import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 
 import '../../../routes/app_pages.dart';
+import '../../home_screen/controllers/home_screen_controller.dart';
+import '../../topup_screen/controllers/topup_screen_controller.dart';
+import '../../transaction_screen/controllers/transaction_screen_controller.dart';
 
 class LoginScreenController extends GetxController {
   TextEditingController emailController = TextEditingController();
@@ -53,6 +56,18 @@ class LoginScreenController extends GetxController {
         print("Token: $token");
 
         box.write('token', token);
+
+        final homeController = Get.find<HomeScreenController>();
+        homeController.token = token;
+        homeController.getBalance();
+        homeController.getServices();
+        homeController.getImageBanners();
+
+        final topController = Get.find<TopupScreenController>();
+        topController.token = token;
+
+        final transC = Get.find<TransactionScreenController>();
+        transC.token = token;
 
         Get.offAllNamed(Routes.HOME);
         Get.snackbar(
