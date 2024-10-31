@@ -28,7 +28,7 @@ class HomeScreenView extends GetView<HomeScreenController> {
                   child: Container(
                     width: 50,
                     height: 50,
-                    color: Colors.grey[400],
+                    color: Colors.white,
                     child: Image.asset(
                       "assets/images/profile.png",
                       fit: BoxFit.cover,

@@ -7,6 +7,7 @@ import 'package:http/http.dart' as http;
 
 import '../../../routes/app_pages.dart';
 import '../../home_screen/controllers/home_screen_controller.dart';
+import '../../profile_screen/controllers/profile_screen_controller.dart';
 import '../../topup_screen/controllers/topup_screen_controller.dart';
 import '../../transaction_screen/controllers/transaction_screen_controller.dart';
 
@@ -59,15 +60,15 @@ class LoginScreenController extends GetxController {
 
         final homeController = Get.find<HomeScreenController>();
         homeController.token = token;
-        homeController.getBalance();
-        homeController.getServices();
-        homeController.getImageBanners();
 
-        final topController = Get.find<TopupScreenController>();
-        topController.token = token;
+        final topupController = Get.find<TopupScreenController>();
+        topupController.token = token;
 
-        final transC = Get.find<TransactionScreenController>();
-        transC.token = token;
+        final transactionController = Get.find<TransactionScreenController>();
+        transactionController.token = token;
+
+        final profileController = Get.find<ProfileScreenController>();
+        profileController.token = token;
 
         Get.offAllNamed(Routes.HOME);
         Get.snackbar(
