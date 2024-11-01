@@ -6,8 +6,12 @@ import '../controllers/home_screen_controller.dart';
 
 class HomeScreenView extends GetView<HomeScreenController> {
   const HomeScreenView({super.key});
+
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
       body: CustomScrollView(
         slivers: [
@@ -17,8 +21,8 @@ class HomeScreenView extends GetView<HomeScreenController> {
               padding: const EdgeInsets.only(left: 16.0),
               child: Image.asset(
                 "assets/images/logo.png",
-                width: 30,
-                height: 30,
+                width: screenWidth * 0.08,
+                height: screenWidth * 0.08,
               ),
             ),
             actions: [
@@ -26,8 +30,8 @@ class HomeScreenView extends GetView<HomeScreenController> {
                 padding: const EdgeInsets.only(right: 16.0),
                 child: ClipOval(
                   child: Container(
-                    width: 50,
-                    height: 50,
+                    width: screenWidth * 0.12,
+                    height: screenWidth * 0.12,
                     color: Colors.white,
                     child: Image.asset(
                       "assets/images/profile.png",
@@ -51,28 +55,26 @@ class HomeScreenView extends GetView<HomeScreenController> {
                 }
                 if (snapshot.hasData) {
                   return Padding(
-                    padding: EdgeInsets.only(
-                      top: 30,
-                      left: 10,
-                      right: 10,
-                      bottom: 30,
+                    padding: EdgeInsets.symmetric(
+                      vertical: screenHeight * 0.05,
+                      horizontal: screenWidth * 0.05,
                     ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
                           "Selamat datang,",
-                          style: TextStyle(fontSize: 20),
+                          style: TextStyle(fontSize: screenWidth * 0.05),
                         ),
                         SizedBox(height: 5),
                         Text(
                           snapshot.data!,
                           style: TextStyle(
-                            fontSize: 25,
+                            fontSize: screenWidth * 0.06,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        SizedBox(height: 30),
+                        SizedBox(height: screenHeight * 0.03),
                         StreamBuilder<String>(
                           stream: controller.getBalance(),
                           builder: (context, snapshotGetBlance) {
@@ -84,9 +86,9 @@ class HomeScreenView extends GetView<HomeScreenController> {
                                 ),
                               );
                             }
-                            if (snapshot.hasData) {
+                            if (snapshotGetBlance.hasData) {
                               return Container(
-                                padding: EdgeInsets.all(20),
+                                padding: EdgeInsets.all(screenWidth * 0.05),
                                 decoration: BoxDecoration(
                                   color: Colors.red[700],
                                   borderRadius: BorderRadius.circular(10),
@@ -105,7 +107,7 @@ class HomeScreenView extends GetView<HomeScreenController> {
                                           "Rp.",
                                           style: TextStyle(
                                             color: Colors.white,
-                                            fontSize: 30,
+                                            fontSize: screenWidth * 0.08,
                                             fontWeight: FontWeight.bold,
                                           ),
                                         ),
@@ -117,7 +119,7 @@ class HomeScreenView extends GetView<HomeScreenController> {
                                                   : "****",
                                               style: TextStyle(
                                                 color: Colors.white,
-                                                fontSize: 30,
+                                                fontSize: screenWidth * 0.08,
                                                 fontWeight: FontWeight.bold,
                                               ),
                                             )),
@@ -144,7 +146,7 @@ class HomeScreenView extends GetView<HomeScreenController> {
                                                 ? Icons.visibility_off_outlined
                                                 : Icons.visibility_outlined,
                                             color: Colors.white,
-                                            size: 20,
+                                            size: screenWidth * 0.05,
                                           ),
                                         ),
                                       ],
@@ -159,7 +161,7 @@ class HomeScreenView extends GetView<HomeScreenController> {
                             }
                           },
                         ),
-                        SizedBox(height: 30),
+                        SizedBox(height: screenHeight * 0.03),
                         StreamBuilder<List<Map<String, dynamic>>>(
                           stream: controller.getServices(),
                           builder: (context, snapshotGetService) {
@@ -180,8 +182,8 @@ class HomeScreenView extends GetView<HomeScreenController> {
                               }
                               return Center(
                                 child: Wrap(
-                                  spacing: 10,
-                                  runSpacing: 10,
+                                  spacing: screenWidth * 0.02,
+                                  runSpacing: screenHeight * 0.02,
                                   alignment: WrapAlignment.start,
                                   children: services.map((service) {
                                     return Column(
@@ -197,9 +199,10 @@ class HomeScreenView extends GetView<HomeScreenController> {
                                             );
                                           },
                                           child: Container(
-                                            width: 50,
-                                            height: 50,
-                                            padding: EdgeInsets.all(10),
+                                            width: screenWidth * 0.15,
+                                            height: screenWidth * 0.15,
+                                            padding: EdgeInsets.all(
+                                                screenWidth * 0.02),
                                             decoration: BoxDecoration(
                                               color: Colors.grey[300],
                                               borderRadius:
@@ -239,17 +242,15 @@ class HomeScreenView extends GetView<HomeScreenController> {
                             }
                           },
                         ),
-                        SizedBox(
-                          height: 20,
-                        ),
+                        SizedBox(height: screenHeight * 0.03),
                         Text(
                           "Temukan promo menarik",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            fontSize: 15,
+                            fontSize: screenWidth * 0.04,
                           ),
                         ),
-                        SizedBox(height: 20),
+                        SizedBox(height: screenHeight * 0.02),
                         StreamBuilder<List<Map<String, String>>>(
                           stream: controller.getImageBanners(),
                           builder: (context, snapshotBanner) {
@@ -263,15 +264,16 @@ class HomeScreenView extends GetView<HomeScreenController> {
                             if (snapshotBanner.hasData &&
                                 snapshotBanner.data!.isNotEmpty) {
                               return SizedBox(
-                                height: 150,
+                                height: screenHeight * 0.2,
                                 child: ListView.builder(
                                   scrollDirection: Axis.horizontal,
                                   itemCount: snapshotBanner.data!.length,
                                   itemBuilder: (context, index) {
                                     final banner = snapshotBanner.data![index];
                                     return Container(
-                                      margin: const EdgeInsets.only(right: 10),
-                                      width: 320,
+                                      margin: EdgeInsets.only(
+                                          right: screenWidth * 0.02),
+                                      width: screenWidth * 0.8,
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(10),
                                         color: Colors.grey[300],

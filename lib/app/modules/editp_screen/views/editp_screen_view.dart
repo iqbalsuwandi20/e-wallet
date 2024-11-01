@@ -5,8 +5,11 @@ import '../controllers/editp_screen_controller.dart';
 
 class EditpScreenView extends GetView<EditpScreenController> {
   const EditpScreenView({super.key});
+
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -30,14 +33,15 @@ class EditpScreenView extends GetView<EditpScreenController> {
         centerTitle: true,
       ),
       body: ListView(
-        padding: EdgeInsets.all(20),
+        padding:
+            EdgeInsets.symmetric(horizontal: screenWidth * 0.05, vertical: 20),
         children: [
           Column(
             children: [
               ClipOval(
                 child: Container(
-                  width: 100,
-                  height: 100,
+                  width: screenWidth * 0.25,
+                  height: screenWidth * 0.25,
                   color: Colors.white,
                   child: Image.asset(
                     "assets/images/profile.png",
@@ -46,7 +50,7 @@ class EditpScreenView extends GetView<EditpScreenController> {
                 ),
               ),
               SizedBox(
-                height: 20,
+                height: screenWidth * 0.05,
               ),
               Obx(() {
                 String fullName =
@@ -55,14 +59,14 @@ class EditpScreenView extends GetView<EditpScreenController> {
                   fullName.isNotEmpty ? fullName : "Nama Tidak Ditemukan",
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: 18,
+                    fontSize: screenWidth * 0.05,
                   ),
                 );
               }),
             ],
           ),
           SizedBox(
-            height: 40,
+            height: screenWidth * 0.1,
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -103,7 +107,7 @@ class EditpScreenView extends GetView<EditpScreenController> {
                 ),
               ),
               SizedBox(
-                height: 20,
+                height: screenWidth * 0.05,
               ),
               Text(
                 "Nama Depan",
@@ -139,7 +143,7 @@ class EditpScreenView extends GetView<EditpScreenController> {
                 ),
               ),
               SizedBox(
-                height: 20,
+                height: screenWidth * 0.05,
               ),
               Text(
                 "Nama Belakang",
@@ -175,7 +179,7 @@ class EditpScreenView extends GetView<EditpScreenController> {
                 ),
               ),
               SizedBox(
-                height: 50,
+                height: screenWidth * 0.1,
               ),
               Obx(
                 () {
@@ -205,7 +209,7 @@ class EditpScreenView extends GetView<EditpScreenController> {
                 },
               ),
               SizedBox(
-                height: 20,
+                height: screenWidth * 0.05,
               ),
               SizedBox(
                 width: double.infinity,

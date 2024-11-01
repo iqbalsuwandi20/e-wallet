@@ -8,6 +8,9 @@ class PaymentScreenView extends GetView<PaymentScreenController> {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -20,7 +23,7 @@ class PaymentScreenView extends GetView<PaymentScreenController> {
         centerTitle: true,
       ),
       body: ListView(
-        padding: EdgeInsets.all(20),
+        padding: EdgeInsets.all(screenWidth * 0.05),
         children: [
           StreamBuilder<String>(
             stream: controller.getBalance(),
@@ -34,7 +37,7 @@ class PaymentScreenView extends GetView<PaymentScreenController> {
               }
               if (snapshot.hasData) {
                 return Container(
-                  padding: EdgeInsets.all(20),
+                  padding: EdgeInsets.all(screenWidth * 0.05),
                   decoration: BoxDecoration(
                     color: Colors.red[700],
                     borderRadius: BorderRadius.circular(10),
@@ -46,14 +49,14 @@ class PaymentScreenView extends GetView<PaymentScreenController> {
                         "Saldo anda",
                         style: TextStyle(color: Colors.white),
                       ),
-                      SizedBox(height: 10),
+                      SizedBox(height: screenHeight * 0.02),
                       Row(
                         children: [
                           Text(
                             "Rp. ${controller.balance.value.toStringAsFixed(0)}",
                             style: TextStyle(
                               color: Colors.white,
-                              fontSize: 30,
+                              fontSize: screenWidth * 0.07,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -69,18 +72,18 @@ class PaymentScreenView extends GetView<PaymentScreenController> {
               }
             },
           ),
-          SizedBox(height: 50),
+          SizedBox(height: screenHeight * 0.05),
           Text(
             "PemBayaran",
-            style: TextStyle(fontSize: 20),
+            style: TextStyle(fontSize: screenWidth * 0.05),
           ),
-          SizedBox(height: 20),
+          SizedBox(height: screenHeight * 0.03),
           Row(
             children: [
               Container(
-                width: 50,
-                height: 50,
-                padding: EdgeInsets.all(10),
+                width: screenWidth * 0.15,
+                height: screenWidth * 0.15,
+                padding: EdgeInsets.all(screenWidth * 0.02),
                 decoration: BoxDecoration(
                   color: Colors.grey[300],
                   borderRadius: BorderRadius.circular(10),
@@ -98,16 +101,22 @@ class PaymentScreenView extends GetView<PaymentScreenController> {
                   ),
                 ),
               ),
-              SizedBox(width: 10),
+              SizedBox(width: screenWidth * 0.03),
               Text(
                 controller.serviceName,
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                  fontSize: screenWidth * 0.045,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ],
           ),
-          SizedBox(height: 40),
+          SizedBox(height: screenHeight * 0.05),
           Container(
-            padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+            padding: EdgeInsets.symmetric(
+              vertical: screenHeight * 0.02,
+              horizontal: screenWidth * 0.05,
+            ),
             decoration: BoxDecoration(
               border: Border.all(color: Colors.grey),
               borderRadius: BorderRadius.circular(10),
@@ -130,9 +139,7 @@ class PaymentScreenView extends GetView<PaymentScreenController> {
               ],
             ),
           ),
-          SizedBox(
-            height: 50,
-          ),
+          SizedBox(height: screenHeight * 0.05),
           Obx(
             () {
               return SizedBox(

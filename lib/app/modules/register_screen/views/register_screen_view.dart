@@ -9,10 +9,13 @@ class RegisterScreenView extends GetView<RegisterScreenController> {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
       body: Center(
         child: SingleChildScrollView(
-          padding: EdgeInsets.symmetric(horizontal: 50),
+          padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -21,21 +24,23 @@ class RegisterScreenView extends GetView<RegisterScreenController> {
                 children: [
                   Image.asset(
                     "assets/images/logo.png",
-                    width: 50,
-                    height: 50,
+                    width: screenWidth * 0.15,
+                    height: screenWidth * 0.15,
                   ),
-                  SizedBox(width: 10),
+                  SizedBox(
+                    width: 10,
+                  ),
                   Text(
                     "SIMS PPOBP",
                     style: TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
-                      fontSize: 20,
+                      fontSize: screenWidth * 0.05,
                     ),
                   ),
                 ],
               ),
-              SizedBox(height: 40),
+              SizedBox(height: screenHeight * 0.05),
               Column(
                 children: [
                   Text(
@@ -43,7 +48,7 @@ class RegisterScreenView extends GetView<RegisterScreenController> {
                     style: TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
-                      fontSize: 25,
+                      fontSize: screenWidth * 0.06,
                     ),
                   ),
                   Text(
@@ -51,10 +56,10 @@ class RegisterScreenView extends GetView<RegisterScreenController> {
                     style: TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
-                      fontSize: 25,
+                      fontSize: screenWidth * 0.06,
                     ),
                   ),
-                  SizedBox(height: 50),
+                  SizedBox(height: screenHeight * 0.05),
                   TextField(
                     controller: controller.emailController,
                     autocorrect: false,
@@ -88,7 +93,7 @@ class RegisterScreenView extends GetView<RegisterScreenController> {
                       style: TextStyle(color: Colors.red),
                     );
                   }),
-                  SizedBox(height: 10),
+                  SizedBox(height: screenHeight * 0.02),
                   TextField(
                     controller: controller.firstNameController,
                     autocorrect: false,
@@ -121,7 +126,7 @@ class RegisterScreenView extends GetView<RegisterScreenController> {
                       style: TextStyle(color: Colors.red),
                     );
                   }),
-                  SizedBox(height: 10),
+                  SizedBox(height: screenHeight * 0.02),
                   TextField(
                     controller: controller.lastNameController,
                     autocorrect: false,
@@ -154,7 +159,7 @@ class RegisterScreenView extends GetView<RegisterScreenController> {
                       style: TextStyle(color: Colors.red),
                     );
                   }),
-                  SizedBox(height: 10),
+                  SizedBox(height: screenHeight * 0.02),
                   Obx(() {
                     return TextField(
                       controller: controller.passwordController,
@@ -200,7 +205,7 @@ class RegisterScreenView extends GetView<RegisterScreenController> {
                       style: TextStyle(color: Colors.red),
                     );
                   }),
-                  SizedBox(height: 10),
+                  SizedBox(height: screenHeight * 0.02),
                   Obx(() {
                     return TextField(
                       controller: controller.confirmPasswordController,
@@ -246,7 +251,7 @@ class RegisterScreenView extends GetView<RegisterScreenController> {
                       style: TextStyle(color: Colors.red),
                     );
                   }),
-                  SizedBox(height: 50),
+                  SizedBox(height: screenHeight * 0.05),
                   Obx(
                     () {
                       return SizedBox(
@@ -276,7 +281,7 @@ class RegisterScreenView extends GetView<RegisterScreenController> {
                       );
                     },
                   ),
-                  SizedBox(height: 10),
+                  SizedBox(height: screenHeight * 0.02),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [

@@ -9,6 +9,9 @@ class TransactionScreenView extends GetView<TransactionScreenController> {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -33,7 +36,8 @@ class TransactionScreenView extends GetView<TransactionScreenController> {
         centerTitle: true,
       ),
       body: ListView(
-        padding: EdgeInsets.all(20),
+        padding: EdgeInsets.symmetric(
+            horizontal: screenWidth * 0.05, vertical: screenHeight * 0.02),
         children: [
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -50,7 +54,7 @@ class TransactionScreenView extends GetView<TransactionScreenController> {
                   }
                   if (snapshot.hasData) {
                     return Container(
-                      padding: EdgeInsets.all(20),
+                      padding: EdgeInsets.all(screenWidth * 0.05),
                       decoration: BoxDecoration(
                         color: Colors.red[700],
                         borderRadius: BorderRadius.circular(10),
@@ -62,14 +66,14 @@ class TransactionScreenView extends GetView<TransactionScreenController> {
                             "Saldo anda",
                             style: TextStyle(color: Colors.white),
                           ),
-                          SizedBox(height: 10),
+                          SizedBox(height: screenHeight * 0.02),
                           Row(
                             children: [
                               Text(
                                 "Rp. ${controller.balance.value.toStringAsFixed(0)}",
                                 style: TextStyle(
                                   color: Colors.white,
-                                  fontSize: 30,
+                                  fontSize: screenWidth * 0.07,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
@@ -83,24 +87,25 @@ class TransactionScreenView extends GetView<TransactionScreenController> {
                   }
                 },
               ),
-              SizedBox(height: 50),
+              SizedBox(height: screenHeight * 0.05),
               Text(
                 "Transaksi",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: 15,
+                  fontSize: screenWidth * 0.05,
                 ),
               ),
-              SizedBox(height: 30),
+              SizedBox(height: screenHeight * 0.03),
               StreamBuilder<List<Map<String, dynamic>>>(
                 stream: controller.getTransactionHistory(),
                 builder: (context, snapshotgetTransaction) {
                   if (snapshotgetTransaction.connectionState ==
                       ConnectionState.waiting) {
                     return Center(
-                        child: CircularProgressIndicator(
-                      backgroundColor: Colors.orange[900],
-                    ));
+                      child: CircularProgressIndicator(
+                        backgroundColor: Colors.orange[900],
+                      ),
+                    );
                   }
                   if (snapshotgetTransaction.hasData &&
                       snapshotgetTransaction.data!.isNotEmpty) {
@@ -123,9 +128,9 @@ class TransactionScreenView extends GetView<TransactionScreenController> {
                         }
 
                         return Padding(
-                          padding: EdgeInsets.only(bottom: 20),
+                          padding: EdgeInsets.only(bottom: screenHeight * 0.02),
                           child: Container(
-                            padding: EdgeInsets.all(15),
+                            padding: EdgeInsets.all(screenWidth * 0.04),
                             decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(10),
@@ -141,12 +146,13 @@ class TransactionScreenView extends GetView<TransactionScreenController> {
                                     Row(
                                       children: [
                                         Icon(iconData, color: amountColor),
+                                        SizedBox(width: screenWidth * 0.02),
                                         Text(
                                           "Rp.${transaction['total_amount']}",
                                           style: TextStyle(
                                             color: amountColor,
                                             fontWeight: FontWeight.bold,
-                                            fontSize: 15,
+                                            fontSize: screenWidth * 0.04,
                                           ),
                                         ),
                                       ],
@@ -156,20 +162,22 @@ class TransactionScreenView extends GetView<TransactionScreenController> {
                                         .first),
                                   ],
                                 ),
-                                SizedBox(height: 10),
+                                SizedBox(height: screenHeight * 0.01),
                                 Row(
                                   children: [
                                     Text(
                                       DateFormat.yMMMMEEEEd('id_ID')
                                           .format(createdOn),
-                                      style: TextStyle(fontSize: 12),
+                                      style: TextStyle(
+                                          fontSize: screenWidth * 0.03),
                                     ),
                                     SizedBox(
-                                      width: 5,
+                                      width: screenWidth * 0.02,
                                     ),
                                     Text(
                                       DateFormat.jms().format(createdOn),
-                                      style: TextStyle(fontSize: 12),
+                                      style: TextStyle(
+                                          fontSize: screenWidth * 0.03),
                                     ),
                                   ],
                                 ),

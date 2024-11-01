@@ -60,7 +60,7 @@ class EditpScreenController extends GetxController {
 
           Get.snackbar(
             'Sukses',
-            "${responseBody['message']}",
+            "Anda berhasil update profile",
             backgroundColor: Colors.orange[900],
             colorText: Colors.white,
           );

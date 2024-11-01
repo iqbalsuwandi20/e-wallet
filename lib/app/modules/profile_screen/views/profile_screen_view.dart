@@ -6,8 +6,12 @@ import '../controllers/profile_screen_controller.dart';
 
 class ProfileScreenView extends GetView<ProfileScreenController> {
   const ProfileScreenView({super.key});
+
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -44,14 +48,14 @@ class ProfileScreenView extends GetView<ProfileScreenController> {
               return Center(child: Text("Error: ${snapshot.error}"));
             }
             return ListView(
-              padding: EdgeInsets.all(20),
+              padding: EdgeInsets.all(screenWidth * 0.05),
               children: [
                 Column(
                   children: [
                     ClipOval(
                       child: Container(
-                        width: 100,
-                        height: 100,
+                        width: screenWidth * 0.25,
+                        height: screenWidth * 0.25,
                         color: Colors.white,
                         child: Image.asset(
                           "assets/images/profile.png",
@@ -60,7 +64,7 @@ class ProfileScreenView extends GetView<ProfileScreenController> {
                       ),
                     ),
                     SizedBox(
-                      height: 20,
+                      height: screenHeight * 0.03,
                     ),
                     Obx(() {
                       String fullName =
@@ -69,24 +73,26 @@ class ProfileScreenView extends GetView<ProfileScreenController> {
                         fullName.isNotEmpty ? fullName : "Nama Tidak Ditemukan",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          fontSize: 18,
+                          fontSize: screenWidth * 0.05,
                         ),
                       );
                     }),
                   ],
                 ),
                 SizedBox(
-                  height: 40,
+                  height: screenHeight * 0.05,
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       "Email",
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: screenWidth * 0.045),
                     ),
                     SizedBox(
-                      height: 10,
+                      height: screenHeight * 0.01,
                     ),
                     TextField(
                       controller: controller.emailController,
@@ -117,14 +123,16 @@ class ProfileScreenView extends GetView<ProfileScreenController> {
                       ),
                     ),
                     SizedBox(
-                      height: 20,
+                      height: screenHeight * 0.02,
                     ),
                     Text(
                       "Nama Depan",
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: screenWidth * 0.045),
                     ),
                     SizedBox(
-                      height: 10,
+                      height: screenHeight * 0.01,
                     ),
                     TextField(
                       controller: controller.firstNameController,
@@ -154,14 +162,16 @@ class ProfileScreenView extends GetView<ProfileScreenController> {
                       ),
                     ),
                     SizedBox(
-                      height: 20,
+                      height: screenHeight * 0.02,
                     ),
                     Text(
                       "Nama Belakang",
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: screenWidth * 0.045),
                     ),
                     SizedBox(
-                      height: 10,
+                      height: screenHeight * 0.01,
                     ),
                     TextField(
                       controller: controller.lastNameController,
@@ -191,7 +201,7 @@ class ProfileScreenView extends GetView<ProfileScreenController> {
                       ),
                     ),
                     SizedBox(
-                      height: 50,
+                      height: screenHeight * 0.05,
                     ),
                     SizedBox(
                       width: double.infinity,
@@ -216,7 +226,7 @@ class ProfileScreenView extends GetView<ProfileScreenController> {
                       ),
                     ),
                     SizedBox(
-                      height: 20,
+                      height: screenHeight * 0.02,
                     ),
                     Obx(
                       () {

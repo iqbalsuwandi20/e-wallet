@@ -9,10 +9,13 @@ class LoginScreenView extends GetView<LoginScreenController> {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
       body: Center(
         child: SingleChildScrollView(
-          padding: EdgeInsets.symmetric(horizontal: 50),
+          padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.1),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -21,8 +24,8 @@ class LoginScreenView extends GetView<LoginScreenController> {
                 children: [
                   Image.asset(
                     "assets/images/logo.png",
-                    width: 50,
-                    height: 50,
+                    width: screenWidth * 0.15,
+                    height: screenWidth * 0.15,
                   ),
                   SizedBox(width: 10),
                   Text(
@@ -30,12 +33,12 @@ class LoginScreenView extends GetView<LoginScreenController> {
                     style: TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
-                      fontSize: 20,
+                      fontSize: screenWidth * 0.05,
                     ),
                   ),
                 ],
               ),
-              SizedBox(height: 40),
+              SizedBox(height: screenHeight * 0.05),
               Column(
                 children: [
                   Text(
@@ -43,7 +46,7 @@ class LoginScreenView extends GetView<LoginScreenController> {
                     style: TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
-                      fontSize: 25,
+                      fontSize: screenWidth * 0.06,
                     ),
                   ),
                   Text(
@@ -51,10 +54,10 @@ class LoginScreenView extends GetView<LoginScreenController> {
                     style: TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
-                      fontSize: 25,
+                      fontSize: screenWidth * 0.06,
                     ),
                   ),
-                  SizedBox(height: 50),
+                  SizedBox(height: screenHeight * 0.05),
                   TextField(
                     controller: controller.emailController,
                     autocorrect: false,
@@ -93,7 +96,7 @@ class LoginScreenView extends GetView<LoginScreenController> {
                           )
                         : SizedBox.shrink(),
                   ),
-                  SizedBox(height: 30),
+                  SizedBox(height: screenHeight * 0.05),
                   Obx(
                     () {
                       return TextField(
@@ -147,7 +150,7 @@ class LoginScreenView extends GetView<LoginScreenController> {
                               )
                             : SizedBox.shrink(),
                   ),
-                  SizedBox(height: 10),
+                  SizedBox(height: screenHeight * 0.01),
                   Obx(
                     () {
                       if (controller.errorMessage.value.isNotEmpty &&
@@ -164,7 +167,7 @@ class LoginScreenView extends GetView<LoginScreenController> {
                       }
                     },
                   ),
-                  SizedBox(height: 50),
+                  SizedBox(height: screenHeight * 0.1),
                   Obx(
                     () {
                       return SizedBox(
@@ -194,7 +197,7 @@ class LoginScreenView extends GetView<LoginScreenController> {
                       );
                     },
                   ),
-                  SizedBox(height: 10),
+                  SizedBox(height: screenHeight * 0.02),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [

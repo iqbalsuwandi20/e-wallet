@@ -8,6 +8,9 @@ class TopupScreenView extends GetView<TopupScreenController> {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
       appBar: AppBar(
         leading: Padding(
@@ -27,7 +30,7 @@ class TopupScreenView extends GetView<TopupScreenController> {
         centerTitle: true,
       ),
       body: ListView(
-        padding: EdgeInsets.all(20),
+        padding: EdgeInsets.all(screenWidth * 0.05),
         children: [
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -44,7 +47,7 @@ class TopupScreenView extends GetView<TopupScreenController> {
                   }
                   if (snapshot.hasData) {
                     return Container(
-                      padding: EdgeInsets.all(20),
+                      padding: EdgeInsets.all(screenWidth * 0.05),
                       decoration: BoxDecoration(
                         color: Colors.red[700],
                         borderRadius: BorderRadius.circular(10),
@@ -56,14 +59,14 @@ class TopupScreenView extends GetView<TopupScreenController> {
                             "Saldo anda",
                             style: TextStyle(color: Colors.white),
                           ),
-                          SizedBox(height: 10),
+                          SizedBox(height: screenHeight * 0.02),
                           Row(
                             children: [
                               Text(
                                 "Rp. ${controller.balance.value.toStringAsFixed(0)}",
                                 style: TextStyle(
                                   color: Colors.white,
-                                  fontSize: 30,
+                                  fontSize: screenWidth * 0.07,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
@@ -79,19 +82,19 @@ class TopupScreenView extends GetView<TopupScreenController> {
                   }
                 },
               ),
-              SizedBox(height: 50),
+              SizedBox(height: screenHeight * 0.05),
               Text(
                 "Silahkan masukan",
-                style: TextStyle(fontSize: 20),
+                style: TextStyle(fontSize: screenWidth * 0.05),
               ),
               Text(
                 "nominal Top Up",
                 style: TextStyle(
-                  fontSize: 27,
+                  fontSize: screenWidth * 0.07,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(height: 40),
+              SizedBox(height: screenHeight * 0.05),
               Obx(() {
                 return TextField(
                   controller: controller.nominalController,
@@ -129,7 +132,7 @@ class TopupScreenView extends GetView<TopupScreenController> {
                   ),
                 );
               }),
-              SizedBox(height: 5),
+              SizedBox(height: screenHeight * 0.02),
               Obx(() {
                 return Text(
                   controller.errorMessage.value,
@@ -138,124 +141,45 @@ class TopupScreenView extends GetView<TopupScreenController> {
                   ),
                 );
               }),
-              SizedBox(height: 30),
+              SizedBox(height: screenHeight * 0.05),
               GridView.count(
                 physics: NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
                 crossAxisCount: 3,
                 childAspectRatio: 1.5,
                 children: [
-                  Container(
-                    margin: EdgeInsets.all(5),
-                    child: ElevatedButton(
-                      onPressed: () {
-                        controller.updateNominal("10000");
-                      },
-                      style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
+                  for (var nominal in [
+                    "10000",
+                    "20000",
+                    "50000",
+                    "100000",
+                    "250000",
+                    "500000"
+                  ])
+                    Container(
+                      margin: EdgeInsets.all(screenWidth * 0.02),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          controller.updateNominal(nominal);
+                        },
+                        style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          padding: EdgeInsets.symmetric(
+                              vertical: screenHeight * 0.02),
                         ),
-                        padding: EdgeInsets.symmetric(vertical: 15),
-                      ),
-                      child: Text(
-                        "Rp10.000",
-                        style: TextStyle(color: Colors.black, fontSize: 14),
+                        child: Text(
+                          "Rp$nominal",
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: screenWidth * 0.04),
+                        ),
                       ),
                     ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.all(5),
-                    child: ElevatedButton(
-                      onPressed: () {
-                        controller.updateNominal("20000");
-                      },
-                      style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        padding: EdgeInsets.symmetric(vertical: 15),
-                      ),
-                      child: Text(
-                        "Rp20.000",
-                        style: TextStyle(color: Colors.black, fontSize: 14),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.all(5),
-                    child: ElevatedButton(
-                      onPressed: () {
-                        controller.updateNominal("50000");
-                      },
-                      style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        padding: EdgeInsets.symmetric(vertical: 15),
-                      ),
-                      child: Text(
-                        "Rp50.000",
-                        style: TextStyle(color: Colors.black, fontSize: 14),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.all(5),
-                    child: ElevatedButton(
-                      onPressed: () {
-                        controller.updateNominal("100000");
-                      },
-                      style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        padding: EdgeInsets.symmetric(vertical: 15),
-                      ),
-                      child: Text(
-                        "Rp100.000",
-                        style: TextStyle(color: Colors.black, fontSize: 14),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.all(5),
-                    child: ElevatedButton(
-                      onPressed: () {
-                        controller.updateNominal("250000");
-                      },
-                      style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        padding: EdgeInsets.symmetric(vertical: 15),
-                      ),
-                      child: Text(
-                        "Rp250.000",
-                        style: TextStyle(color: Colors.black, fontSize: 14),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.all(5),
-                    child: ElevatedButton(
-                      onPressed: () {
-                        controller.updateNominal("500000");
-                      },
-                      style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        padding: EdgeInsets.symmetric(vertical: 15),
-                      ),
-                      child: Text(
-                        "Rp500.000",
-                        style: TextStyle(color: Colors.black, fontSize: 14),
-                      ),
-                    ),
-                  ),
                 ],
               ),
-              SizedBox(height: 50),
+              SizedBox(height: screenHeight * 0.05),
               Obx(
                 () {
                   return SizedBox(
