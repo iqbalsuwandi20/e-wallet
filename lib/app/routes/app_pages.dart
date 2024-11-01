@@ -85,6 +85,7 @@ class AppPages {
       name: _Paths.EDITP_SCREEN,
       page: () => const EditpScreenView(),
       binding: EditpScreenBinding(),
+      transition: Transition.fadeIn,
     ),
   ];
 }
