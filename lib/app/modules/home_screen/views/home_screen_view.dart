@@ -199,8 +199,8 @@ class HomeScreenView extends GetView<HomeScreenController> {
                                             );
                                           },
                                           child: Container(
-                                            width: screenWidth * 0.15,
-                                            height: screenWidth * 0.15,
+                                            width: screenWidth * 0.2,
+                                            height: screenWidth * 0.2,
                                             padding: EdgeInsets.all(
                                                 screenWidth * 0.02),
                                             decoration: BoxDecoration(
